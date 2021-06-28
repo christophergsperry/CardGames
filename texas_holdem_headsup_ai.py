@@ -68,15 +68,15 @@ def strength(player):
     c_n = connected(player)
     h_c = high_card(player)
     l_c = low_card(player)
-    if p_p and b_w:
+    if p_p and b_w or (h_c == 14 and l_c == 13):
         return "ELITE"
-    elif p_p or (a_x and s_t) or (b_w and s_t) or (a_x and b_w):
+    elif p_p or (b_w and s_t) or (a_x and b_w):
         return "VERY STRONG"
-    elif b_w or a_x or (s_t and c_n and h_c >= 8):
+    elif b_w or a_x or (s_t and c_n and h_c >= 9):
         return "STRONG"
-    elif h_c >= 13 or (h_c >= 10 and l_c >= 7 and (s_t or c_n)):
+    elif (h_c >= 13 and l_c > 4) or (h_c >= 10 and l_c >= 7 and (s_t or c_n)):
         return "ABOVE AVERAGE"
-    elif (h_c >= 12 and l_c > 4) or (s_t and c_n) or (h_c >= 10 and l_c >= 5) or (h_c >= 8 and l_c > 4 and (s_t or c_n)):
+    elif h_c == 13 or (h_c >= 12 and l_c > 4) or (s_t and c_n) or (h_c >= 10 and l_c >= 5) or (h_c >= 8 and l_c > 4 and (s_t or c_n)):
         return "AVERAGE"
     elif h_c == 12 or (h_c >= 11 and l_c > 4) or (h_c >= 7 and l_c > 3 and (s_t or c_n)) or h_c >= 9:
         return "BELOW AVERAGE"
